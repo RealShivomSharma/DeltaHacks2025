@@ -1,4 +1,4 @@
-# DeltaHacks2025
+# Crib Crew (DeltaHacks 2025)
 
 ![image](https://github.com/user-attachments/assets/dff28364-5955-41f0-80c1-de4e3127dc49)
 
