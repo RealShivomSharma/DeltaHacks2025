@@ -6,32 +6,36 @@ import { FaBath, FaBed, FaClock } from "react-icons/fa6";
 import { MdElectricBolt, MdLocalFireDepartment } from "react-icons/md";
 import { IoMdWater } from "react-icons/io";
 import { GiOwl } from "react-icons/gi";
-import { LuCigarette, LuCigaretteOff } from "react-icons/lu";
+import { LuBird, LuCigarette, LuCigaretteOff } from "react-icons/lu";
 import { NoPetsAllowed } from "./petsLogo";
 
 
 const db = [
     {
-        type: "person",
-        age:"24",
-        program:"Software Engineering",
-        isNightOwl:true,
-        isExtrovert:true,
-        isSmoker:true,
-        isPetFriendly:true,
-        bio:"Hey there! My name is John and I am going into my 4th year of Software Engineering at Mac. Feel free to reach out if you are interested in renting together"
+        type: "house",
+        rent: "1200",
+        termLength: "8",
+        startDate: "September 1, 2025",
+        Address: "1280 Main Street West, Hamilton",
+        numBed: "4",
+        numBath: "3",
+        imgLink: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+        hasElec: true,
+        hasHeat: true,
+        hasWater: true,
     },
+
     {
-        type:"house",
-        rent:"1200",
-        termLength:"8",
-        startDate:"September 1, 2025",
-        Address:"1280 Main Street West, Hamilton",
-        numBed:"4",
-        numBath:"3",
-
-
-        
+        type: "person",
+        name: "John Smith",
+        age: "24",
+        program: "Software Engineering",
+        isNightOwl: true,
+        isExtrovert: true,
+        isSmoker: true,
+        isPetFriendly: true,
+        imgLink: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fstock.adobe.com%2Fsearch%3Fk%3Dportrait&psig=AOvVaw3N809GkTEaD9xyn_cCL3gF&ust=1736782316582000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMCAqbrA8IoDFQAAAAAdAAAAABAE",
+        bio: "Hey there! My name is John and I am going into my 4th year of Software Engineering at Mac. Feel free to reach out if you are interested in renting together"
     },
     {
         name: "Richard Hendricks",
@@ -55,13 +59,14 @@ const db = [
     }
 ];
 
-function Simple() {
+function Simple({ setCount }) {
     const characters = db;
     const [lastDirection, setLastDirection] = useState();
 
     const swiped = (direction, nameToDelete) => {
         console.log("removing: " + nameToDelete);
         setLastDirection(direction);
+        setCount((count) => count + 1)
     };
 
     const outOfFrame = (name) => {
@@ -86,53 +91,58 @@ function Simple() {
                         onSwipe={(dir) => swiped(dir, character.name)}
                         onCardLeftScreen={() => outOfFrame(character.name)}
                     >
-                        {/* <div
-                            className="card"
-                        >
-                            <img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" style={{ borderRadius: "20px" }}></img>
-                            <div style={{ padding: "20px",textAlign:"left" }}>
-                                <p style={{fontWeight:"bold"}}>$1220/month</p>
-                                <p ><FaClock style={{display:"inline"}}></FaClock> Lease Term: 8 Months</p>
-                                <p ><IoCalendarNumberSharp style={{display:"inline"}}></IoCalendarNumberSharp> Start Date: September 1, 2025</p>
-                                <p ><IoLocation style={{display:"inline"}}></IoLocation>1280 Main Street West, Hamilton</p>
-                                <div style={{display:"flex", justifyContent:"space-around"}}>
-                                <p ><FaBath style={{display:"inline"}}></FaBath> 2</p>
-                                <p ><FaBed style={{display:"inline"}}></FaBed> 4</p>
-                                </div>
-                                <p >Utilities Included:</p>
-                                <div style={{display:"flex", justifyContent:"space-around"}}>
-                                    <p><MdElectricBolt style={{display:"inline"}}></MdElectricBolt> Electricity</p>
-                                    <p><IoMdWater style={{display:"inline"}}/> Water</p>
-                                    <p><MdLocalFireDepartment style={{display:"inline"}}/> Heat</p>
-                                </div>
-                            </div>
-                        </div> */}
+                        {
+                            character.type === "house" ? (
+                                <div
+                                    className="card"
+                                >
+                                    <img src={character.imgLink} style={{ borderRadius: "20px" }}></img>
+                                    <div style={{ padding: "20px", textAlign: "left" }}>
+                                        <p style={{ fontWeight: "bold" }}>${character.rent}/month</p>
+                                        <p ><FaClock style={{ display: "inline" }}></FaClock> Lease Term: {character.termLength} Months</p>
+                                        <p ><IoCalendarNumberSharp style={{ display: "inline" }}></IoCalendarNumberSharp> Start Date: {character.startDate}</p>
+                                        <p ><IoLocation style={{ display: "inline" }}></IoLocation>{character.Address}</p>
+                                        <div style={{ display: "flex", justifyContent: "space-around" }}>
+                                            <p ><FaBed style={{ display: "inline" }}></FaBed> {character.numBed}</p>
+                                            <p ><FaBath style={{ display: "inline" }}></FaBath> {character.numBath}</p>
+                                        </div>
 
-                        <div
-                            className="card"
-                        >
-                            <img src="https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg" style={{ borderRadius: "20px" }}></img>
-                            <div style={{ padding: "20px",textAlign:"left" }}>
-                                <p style={{fontWeight:"bold"}}>John Smith</p>
-                                <p >Age: 24 Years</p>
-                                <p > Program: Software Engineering</p>
-                                <p>Year of Study: 4</p>                                
-                                <div style={{display:"flex", justifyContent:"space-around",flexWrap:"wrap"}}>
-                                <p style={{flex:"50%"}}><GiOwl fill="bold" style={{display:"inline"}}></GiOwl> Night Owl</p>
-                                <p style={{flex:"50%"}}><IoChatbubblesOutline fill="bold" style={{display:"inline"}}></IoChatbubblesOutline> Extrovert</p>
-                                <p style={{flex:"50%"}}><LuCigarette style={{display:"inline"}}/> Smoker</p>
-                                <p style={{flex:"50%"}}><NoPetsAllowed style={{display:"inline"}}/> No Pets</p>
+                                        <p >Utilities Included:</p>
+                                        <div style={{ display: "flex", justifyContent: "space-around" }}>
+                                            {character.hasElec && <p><MdElectricBolt style={{ display: "inline" }}></MdElectricBolt> Electricity</p>}
+                                            {character.hasWater && <p><IoMdWater style={{ display: "inline" }} /> Water</p>}
+                                            {character.hasHeat && <p><MdLocalFireDepartment style={{ display: "inline" }} /> Heat</p>}
+                                        </div>
+                                    </div>
                                 </div>
+                            ) : (<div
+                                className="card"
+                            >
+                                <img src="https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg" style={{ borderRadius: "20px" }}></img>
+                                <div style={{ padding: "20px", textAlign: "left" }}>
+                                    <p style={{ fontWeight: "bold" }}>{character.name}</p>
+                                    <p >Age: {character.age} Years</p>
+                                    <p > Program: {character.program}</p>
+                                    <p>Year of Study: 4</p>
+                                    <div style={{ display: "flex", justifyContent: "space-around", flexWrap: "wrap" }}>
+                                        {character.isNightOwl ? <p style={{ flex: "50%" }}><GiOwl fill="bold" style={{ display: "inline" }}></GiOwl> Night Owl</p>:<p style={{ flex: "50%" }}><LuBird fill="bold" style={{ display: "inline" }}></LuBird> Night Owl</p>}
+                                        {character.isExtrovert && <p style={{ flex: "50%" }}><IoChatbubblesOutline fill="bold" style={{ display: "inline" }}></IoChatbubblesOutline> Extrovert</p>}
+                                        <p style={{ flex: "50%" }}><LuCigarette style={{ display: "inline" }} /> Smoker</p>
+                                        <p style={{ flex: "50%" }}><NoPetsAllowed style={{ display: "inline" }} /> No Pets</p>
+                                    </div>
 
-                                {/* <div style={{display:"flex", justifyContent:"space-around",flexWrap:"1"}}>
-
-                                </div> */}
-                                <p >Bio:</p>
-                                <div style={{display:"flex", justifyContent:"space-around"}}>
-                                    <i>"Hey there! My name is John and I am going into my 4th year of Software Engineering at Mac. Feel free to reach out if you are interested in renting together"</i>
+                                    {/* <div style={{display:"flex", justifyContent:"space-around",flexWrap:"1"}}>
+    
+                                    </div> */}
+                                    <p >Bio:</p>
+                                    <div style={{ display: "flex", justifyContent: "space-around" }}>
+                                        <i>"Hey there! My name is John and I am going into my 4th year of Software Engineering at Mac. Feel free to reach out if you are interested in renting together"</i>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                            </div>)
+                        /* */}
+
+
 
                     </TinderCard>
                 ))}
@@ -148,4 +158,4 @@ function Simple() {
 
 export default Simple;
 
-{/* <LuBird /> */}
+{/* <LuBird /> */ }

@@ -10,12 +10,17 @@ import MatchPopup from './component/matchPopUp'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [match, setMatch] = useState(true)
+
+  // if(count===5){
+  //   setMatch(true);
+  // }
 
   return (
 <div style={{display:"flex",direction:"column"}}>
 <h1>Student Housing</h1>
-<Simple />
-<MatchPopup isMatch={true} />
+<Simple setCount={setCount} />
+{count==5 &&<MatchPopup isMatch={match} />}
 </div>
   )
 }
