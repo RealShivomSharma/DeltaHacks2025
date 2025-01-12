@@ -18,9 +18,9 @@ function App() {
 
   return (
 <div style={{display:"flex",direction:"column"}}>
-<h1>Student Housing</h1>
+<h1>Crib Crew</h1>
 <Simple setCount={setCount} />
-{count==5 &&<MatchPopup isMatch={match} />}
+{count==10 &&<MatchPopup isMatch={match} setCount={setCount}/>}
 </div>
   )
 }

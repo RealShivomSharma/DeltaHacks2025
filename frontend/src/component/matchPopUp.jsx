@@ -11,7 +11,9 @@ import { NoPetsAllowed } from "./petsLogo";
 import Avatar from 'react-avatar';
 
 
-const MatchPopup = ({ isMatch, onClose }) => {
+
+
+const MatchPopup = ({ isMatch, setCount }) => {
     return (
         <div className={`popup ${isMatch ? 'popup--visible' : ''}`}>
             {/* <div className="popup-content"> */}
@@ -20,9 +22,9 @@ const MatchPopup = ({ isMatch, onClose }) => {
                 className="card"
                 style={{marginBottom:"48px"}}
             >
-                <img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" style={{ borderRadius: "20px" }}></img>
+                <img src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?cs=srgb&dl=pexels-binyaminmellish-1396122.jpg&fm=jpg" style={{ borderRadius: "20px" }}></img>
                 <div style={{ padding: "20px", textAlign: "left"}}>
-                    <p style={{ fontWeight: "bold" }}>$1220/month</p>
+                    <p style={{ fontWeight: "bold" }}>$1200/month</p>
                     <p ><FaClock style={{ display: "inline" }}></FaClock> Lease Term: 8 Months</p>
                     <p ><IoCalendarNumberSharp style={{ display: "inline" }}></IoCalendarNumberSharp> Start Date: September 1, 2025</p>
                     <p ><IoLocation style={{ display: "inline" }}></IoLocation>1280 Main Street West, Hamilton</p>
@@ -41,14 +43,14 @@ const MatchPopup = ({ isMatch, onClose }) => {
 
             <div style={{ width:"70%",display: "flex", justifyContent: "space-between",marginBottom:"32px" }}>
 
-                <div style={{ display: "flex", flexDirection: "column" }}><Avatar round={100} src='https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg' size='90' /> <p>John</p></div>
+                <div style={{ display: "flex", flexDirection: "column" }}><Avatar round={100} src='https://t4.ftcdn.net/jpg/01/51/99/39/360_F_151993994_mmAYzngmSbNRr6Fxma67Od3WHrSkfG5I.jpg' size='90' /> <p>Sophia</p></div>
 
-                <div style={{ display: "flex", flexDirection: "column" }}><Avatar round={100} src='https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg' size='90' /> <p>John</p></div>
-                <div style={{ display: "flex", flexDirection: "column" }}><Avatar round={100} src='https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg' size='90' /> <p>John</p></div>
+                <div style={{ display: "flex", flexDirection: "column" }}><Avatar round={100} src='https://t3.ftcdn.net/jpg/02/00/90/24/360_F_200902415_G4eZ9Ok3Ypd4SZZKjc8nqJyFVp1eOD6V.jpg' size='90' /> <p>David</p></div>
+                <div style={{ display: "flex", flexDirection: "column" }}><Avatar round={100} src='https://t3.ftcdn.net/jpg/02/22/85/16/360_F_222851624_jfoMGbJxwRi5AWGdPgXKSABMnzCQo9RN.jpg' size='90' /> <p>Ryan</p></div>
 
             </div>
-            <button className='gcbutton' style={{marginBottom:"16px"}} onClick={onClose}>Start a group chat</button>
-            <button onClick={onClose}>Keep Swiping</button>
+            <button className='gcbutton' style={{marginBottom:"16px"}} >Start a group chat</button>
+            <button onClick={()=>{setCount((count) => count + 1)}}>Keep Swiping</button>
             {/* </div> */}
         </div>
     );
